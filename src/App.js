@@ -11,7 +11,9 @@ class App extends React.Component {
     getWeather = async (e) => {
         // pozbycie się przeładowania strony
         e.preventDefault();
-        const api_call = await fetch(`http://api.openweathermap.org/data/2.5/forecast?q=Bardo,PL&appid=${API_KEY}&units=metric`);
+        // złapanie danych, które wpisujemy w formularz
+        const city = e.target.elements.city.value
+        const api_call = await fetch(`http://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${API_KEY}&units=metric`);
         // każda odpowiedź, którą otrzymamy od API ma być konwertowana do json
         const data = await api_call.json();
 
