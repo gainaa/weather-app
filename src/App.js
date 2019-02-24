@@ -24,12 +24,10 @@ class App extends React.Component {
         // każda odpowiedź, którą otrzymamy od API ma być konwertowana do json
         const data = await api_call.json();
         this.setState({
-            temperature: data.main.temp,
-            city: data.name,
-            humidity: data.main.humidity,
-            description: data.weather[0].description,
-            error: '',
+            temperature: data.list[1].main.temp
+
         });
+
         console.log(data);
     }
     render() {
@@ -37,7 +35,13 @@ class App extends React.Component {
             <div>
                 <Title />
                 <Form getWeather={this.getWeather} />
-                <Weather />
+                <Weather
+                    temperature={this.state.temperature}
+                    city={this.state.city}
+                    humidity={this.state.humidity}
+                    description={this.state.description}
+                    error={this.state.error}
+                />
             </div>
         )
     }
