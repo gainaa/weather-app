@@ -12,6 +12,7 @@ class App extends React.Component {
         const api_call = await fetch(`http://api.openweathermap.org/data/2.5/forecast?q=Bardo,PL&       appid=${API_KEY}&units=metric`);
         // każda odpowiedź, którą otrzymamy od API ma być konwertowana do json
         const data = await api_call.json();
+
     }
     render() {
         return (
