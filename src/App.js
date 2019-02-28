@@ -23,15 +23,24 @@ class App extends React.Component {
         const api_call = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric`);
         // każda odpowiedź, którą otrzymamy od API ma być konwertowana do json
         const data = await api_call.json();
-        this.setState({
-            temperature: data.main.temp,
-            city: data.name,
-            humidity: data.main.humidity,
-            description: data.weather[0].description,
-            error: ""
-        });
+        if (city) {
+            this.setState({
+                temperature: data.main.temp,
+                city: data.name,
+                humidity: data.main.humidity,
+                description: data.weather[0].description,
+                error: ""
+            });
+        } else {
+            this.setState({
+                temperature: undefined,
+                city: undefined,
+                humidity: undefined,
+                description: undefined,
+                error: "Please enter the city name"
+            });
+        }
 
-        console.log(data);
     }
     render() {
         return (
